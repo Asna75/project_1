@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+          <div class="navbar">
+    <a href="#" class="active">Home</a>
+    <a href="digital_clock.html">Time</a>
+    <a href="stopWatch.html">Stopwatch</a>
+    <a href="#alarms">Alarms</a>
+  </div>
+    <div id="clockbody">
+    <div id="clock-container">
+        <div id="clock"> 00:00:00:</div>
+  
+
+      </div>
+</div>
+    <!-- JS -->
+    <script>
+    function clockUpdate(){
+const now =new Date();
+let hours = now.getHours();
+const minutes = now.getMinutes().toString().padStart(2,0);;
+const seconds = now.getSeconds().toString().padStart(2,0);
+
+const am_pm = hours >= 12? "PM" : "AM";
+hours = hours % 12 || 12;
+hours= hours.toString().padStart(2,0);
+
+const timestring =`${hours}: ${minutes}: ${seconds} ${am_pm}`;
+document.getElementById("clock").textContent= timestring;
+}
+
+clockUpdate();
+setInterval(clockUpdate,1000);
+    </script>
+
+
+
+
+<!-- CSS -->
+    <style>
+        #clockbody{ margin: 0;
+   background-image:linear-gradient(to bottom left, rgb(205, 154, 210), rgb(105, 16, 157));
+ background-size: cover;
+ /* for scroller fixed display */
+ background-attachment: fixed;
+
+
+}
+
+#clock-container{
+    display: flex;
+  justify-content: center;
+    align-items: center;
+    border: 2px solid;
+    height: 100vh;
+}
+#clock{
+
+    font-size: 8rem;
+    font-size: bold;
+    text-align: center;
+    border: 2px solid black;
+    background-color: black;
+    color: white;
+    width:800px ;
+    height: 150px;
+    box-shadow: 8px 10px 8px  rgb(54, 54, 54);
+}
+
+ body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Navbar container */
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Navbar links */
+    .navbar a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+      display: block;
+    }
+
+    /* Hover effect */
+    .navbar a:hover {
+      background-color: #575757;
+    }
+
+    /* Active link */
+    .navbar a.active {
+      background-color: #04AA6D;
+    }
+
+    /* Responsive for small screens */
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+
+    </style>
+
+</body>
+</html>
