@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      <div class="navbar">
+    <a href="tempretureCon.html" class="active">Home</a>
+    <a href="digital_clock.html">Time</a>
+    <a href="stopWatch.html">Stopwatch</a>
+    <a href="#alarms">Alarms</a>
+  </div>
+    
+
+    <h1 id="head1">Stop Watch</h1>
+    <div id="stopWatch">
+<div id="display">
+    00:00:00
+</div>
+
+<div id="controls">
+    <button id="startbtn" onclick="start()">Start</button>
+    <button id="stopbtn" onclick="stop()">Stop</button>
+    <button id="restartbtn" onclick="restart()">Restart</button>
+</div>
+
+    </div>
+
+    <script>
+      let timer= null;
+      let isRunning = false;
+      let seconds =0;
+      let minutes=0;
+      let hours= 0;
+const display = document.getElementById("display");
+
+function start(){
+    if(!isRunning)
+{
+    timer = setInterval(() => {
+        seconds++;
+        if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+        }
+        if (minutes === 60) {
+            minutes = 0;
+            hours++;
+        }
+        update(); 
+    }, 1000);
+
+}
+}
+
+function stop(isRunning){
+
+    clearInterval(timer)
+}
+
+function restart(){
+    isRunning = false;
+    setInterval(timer);
+    hours = 0;
+    minutes = 0;
+    seconds = 0;
+    milliseconds=0;
+    updateDisplay(); 
+}
+
+
+
+
+      function update(){
+const format =`${String(hours).padStart(2,0)}:${String(minutes).padStart(2,0)}:${String(seconds).padStart(2,0)}`;
+display.textContent = format; 
+
+}
+
+
+
+    </script>
+
+
+
+    <style>
+    #stopWatch{
+text-align: center;
+ margin-top: 20px;
+    border: 2px solid;
+    width: 300px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 30px;
+}
+#head1{ text-align: center;
+margin-top: 10%;
+font-size: 4rem;
+color: black;}
+
+#display{ font-size: 5rem;
+color: rgb(197, 2, 2);
+text-shadow: 2px 2px 2px black ;}
+
+button{
+    padding: 10px 20px  ;
+    margin-top: 10px;
+    background-color: black;
+    color: white;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+button:hover{
+    background-color: #1f1d1d;
+    box-shadow: 2px 2px 5px rgb(117, 92, 92);
+}
+
+
+
+ 
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      align-items: center;
+   
+    }
+
+    /* Navbar container */
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Navbar links */
+    .navbar a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+      display: block;
+    }
+
+    /* Hover effect */
+    .navbar a:hover {
+      background-color: #575757;
+    }
+
+    /* Active link */
+    .navbar a.active {
+      background-color: #04AA6D;
+    }
+
+    /* Responsive for small screens */
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    </style>
+</body>
+</html>
